@@ -1,0 +1,1326 @@
+# Master list of MSL's variables standard_names and descriptions (CF convention)
+# Based on: http://cfconventions.org/standard-names.html
+
+# IMPORTANT:
+# (1) Do not use double-quotes within strings (they are already used in nc_attrs.py to call ncatted)
+# (2) Do not assign key values as empty strings (at least a space must be used)
+# (3) Each standard_name key should have a variable_name list which contains all names that
+#     variables associated with that standard_name in the netcdf files may have. Each netcdf
+#     variable name (e.g., hs, ugrd10m) should appear in only one list (there can not be more than
+#     one standard_name for a given variable).
+
+standard_name_table: 
+    version_number: 28
+    last_modified: '2015-01-07T10:24:11Z'
+    institution: 'Program for Climate Model Diagnosis and Intercomparison'
+    contact: 'webmaster@pcmdi.llnl.gov'
+    url: 'http://cfconventions.org/standard-names.html'
+
+
+standard_name:
+
+    not_defined: # for dodge netcdf variables that won't associate to anystandard_name
+        variable_name:   []
+
+    #===========================================================================
+    # Time
+    #===========================================================================
+    time:
+        variable_name:   ['time', 'Time']
+        long_name:       'Time'
+        canonical_units: 's'
+        units:           's'
+        description:     ' '
+
+    forecast_period:
+        variable_name:   []
+        long_name:       'Forecast cycle period'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            Forecast period is the time interval between the forecast
+            reference time and the validity time. A period is an
+            interval of time, or the time-period of an oscillation.
+
+    forecast_reference_time:
+        variable_name:   ['tau']
+        long_name:       'Forecast reference time'
+        canonical_units: 's'
+        description:     >
+            The forecast reference time in NWP is the data time,
+            the time of the analysis from which the forecast was made.
+            It is not the time for which the forecast is valid; the
+            standard name of time should be used for that time.
+
+    time_bounds:
+        variable_name:   ['time_bnds']
+        long_name:       'time bounds'
+        description:    ' '
+
+    #===========================================================================
+    # Coordinates
+    #===========================================================================
+    altitude:
+        variable_name:   ['level']
+        long_name:       'Altitude above the geoid'
+        description:     >
+            Altitude is the (geometric) height above the geoid, which is the reference
+            geopotential surface. The geoid is similar to mean sea level.
+
+    longitude:
+        variable_name:   ['lon', 'longitude', 'Longitude']
+        long_name:       'Longitude'
+        canonical_units: 'degree'
+        units:           'degrees_east' # COARDS
+        description:     >
+            Longitude is positive eastward; its units of degree_east (or equivalent)
+            indicate this explicitly. In a latitude-longitude system defined with
+            respect to a rotated North Pole, the standard name of grid_longitude
+            should be used instead of longitude. Grid longitude is positive in the
+            grid-eastward direction, but its units should be plain degree.
+
+    latitude:
+        variable_name:   ['lat', 'latitude', 'Latitude']
+        long_name:       'Latitude'
+        canonical_units: 'degree'
+        units:           'degrees_north' # COARDS
+        description:     >
+            Latitude is positive northward; its units of degree_north (or equivalent)
+            indicate this explicitly. In a latitude-longitude system defined with
+            respect to a rotated North Pole, the standard name of grid_latitude
+            should be used instead of latitude. Grid latitude is positive in the
+            grid-northward direction, but its units should be plain degree.
+
+    grid_longitude:
+        variable_name:   []
+        long_name:       'Longitude'
+        canonical_units: 'degree'
+        units:           'degrees_east' # COARDS
+        description:     >
+            Longitude is positive eastwards; its units of degree_east (or equivalent)
+            indicate this explicitly. In a latitude-longitude system defined with
+            respect to a rotated North Pole, the standard name of grid_longitude
+            should be used instead of longitude. Grid  longitude is positive in the
+            grid-eastwards direction, but its units should be plain degree.
+
+    grid_latitude:
+        variable_name:   []
+        long_name:       'Longitude'
+        canonical_units: 'degree'
+        units:           'degrees_north' # COARDS
+        description:     >
+            Latitude is positive northward; its units of degree_north (or equivalent)
+            indicate this explicitly. In a latitude-longitude system defined with
+            respect to a rotated North Pole, the standard name of grid_latitude
+            should be used instead of latitude. Grid latitude is positive in the
+            grid-northward direction, but its units should be plain degree.
+
+    projection_x_coordinate:
+        variable_name:   []
+        long_name:       'Projected x coordinate'
+        canonical_units: 'm'
+        units:           'm'
+        description:     >
+            'x' indicates a vector component along the grid x-axis, when this is
+            not true longitude, positive with increasing x. Projection coordinates
+            are distances in the x- and y-directions on a plane onto which the
+            surface of the Earth has been projected according to a map projection.
+            The relationship between the projection coordinates and latitude and
+            longitude is described by the grid_mapping.
+
+    projection_y_coordinate:
+        variable_name:   []
+        long_name:       'Projected y coordinate'
+        canonical_units: 'm'
+        units:           'm'
+        description:     >
+            'y' indicates a vector component along the grid y-axis, when this is
+            not true latitude, positive with increasing y. Projection coordinates
+            are distances in the x- and y-directions on a plane onto which the
+            surface of the Earth has been projected according to a map projection.
+            The relationship between the projection coordinates and latitude and
+            longitude is described by the grid_mapping.
+
+    depth:
+        variable_name:   ['depth', 'dep']
+        long_name:       'Depth'
+        canonical_units: 'm'
+        units:           'm'
+        description:     Depth is the vertical distance below the surface.
+
+    height_above_sea_floor:
+        variable_name:   []
+        long_name:       'Height above the sea floor'
+        canonical_units: 'm'
+        units:           'm'
+        description:     ' '
+
+    water_surface_height_above_reference_datum:
+        variable_name:   []
+        long_name:       'Water surface height above reference datum'
+        canonical_units: 'm'
+        units:           'm'
+        description:     >
+            'Water surface height above reference datum' means the height of the upper
+            surface of a body of liquid water, such as sea, lake or river, above an
+            arbitrary reference datum. The altitude of the datum should be provided
+            in a variable with standard name water_surface_reference_datum_altitude.
+            The surface called 'surface' means the lower boundary of the atmosphere.
+
+    water_surface_reference_datum_altitude:
+        variable_name:   []
+        long_name:       'Water surface reference datum altitude'
+        canonical_units: 'm'
+        units:           'm'
+        description:     >
+            Altitude is the (geometric) height above the geoid, which is the
+            reference geopotential surface. The geoid is similar to mean sea level.
+            'Water surface reference datum altitude' means the altitude of the
+            arbitrary datum referred to by a quantity with standard name
+            'water_surface_height_above_reference_datum'. The surface called
+            'surface' means the lower boundary of the atmosphere.
+
+    land_binary_mask:
+        variable_name:   []
+        long_name:       'Land mask'
+        canonical_units: '1'
+        units:           '1'
+        description:     >
+            X_binary_mask has 1 where condition X is met,
+            0 elsewhere. 1 = land, 0 = sea.
+
+    model_level_number:
+        variable_name:   []
+        long_name:       'Model level number'
+        canonical_units: '1'
+        units:           '1'
+        description:     >
+            Model level number should be understood as equivalent to layer number.
+
+    ocean_sigma_coordinate:
+        variable_name:   []
+        long_name:       'Ocean sigma coordinates'
+        canonical_units: '1'
+        units:           '1'
+        description:     >
+            See Appendix D of the CF convention for information about dimensionless
+            vertical coordinates. Note that the ocean sigma coordinate is not the
+            same quantity as sea water sigma (excess of density over 1000 kg m-3),
+            for which there are various other standard names.
+
+    realization:
+        variable_name:   []
+        long_name:       'Realization'
+        canonical_units: '1'
+        units:           '1'
+        description:     >
+            Realization is used to label a dimension that can be thought of asa
+            statistical sample, e.g., labelling members of a model ensemble.
+
+    platform_id:
+        variable_name:   []
+        long_name:       'Platform id'
+        canonical_units: ' '
+        units:           ' '
+        description:     >
+            A variable with the standard name of platform_id contains strings which
+            help to identify the platform from which an observation was made. For
+            example, this may be a WMO station identification number.
+
+    platform_name:
+        variable_name:   []
+        long_name:       'Platform name'
+        canonical_units: ' '
+        units:           ' '
+        description:     >
+            A variable with the standard name of platform_name contains strings which
+            help to identify the platform from which an observation was made. For
+            example, this may be a geographical place name such as 'South Pole'
+            or the name of a meteorological observing station.
+
+    wave_frequency:
+        variable_name:   []
+        long_name:       'Sea-surface wave frequency'
+        canonical_units: 's-1'
+        units:           's-1'
+        description:     >
+            Frequency is the number of oscillations of a wave per unit time.
+
+    sea_surface_wave_frequency:
+        variable_name:   ['freq', 'frequencies', 'Frequencies']
+        long_name:       'wave frequency'
+        description:     >
+            Frequency is the number of oscillations of a wave per unit time.
+
+    sea_surface_wave_frequency_resolution:
+        variable_name:   ['df']
+        long_name:       'wave frequency resolution'
+        description:     >
+            Frequency is the number of oscillations of a wave per unit time.
+
+    sea_surface_wave_from_direction:
+        variable_name:   ['dir']
+        long_name:       'sea surface wave from direction'
+        canonical_units: 'degree'
+        units:           'degree'
+        description:     >
+            'from_direction' is used in the construction X_from_direction and
+            indicates the direction from which the velocity vector of X is coming.
+
+    sea_surface_wave_to_direction:
+        variable_name:   ['direction']
+        long_name:       'sea surface wave to direction'
+        canonical_units: 'degree'
+        units:           'degree'
+        description:     >
+            'to_direction' is used in the construction X_to_direction and indicates
+            the direction towards which the velocity vector of X is headed. The
+            direction is a bearing in the usual geographical sense, measured
+            positive clockwise from due north.
+
+    scale_factor:
+        variable_name:   ['factor']
+        long_name:       'Normalisation factor'
+        description:     ' '
+
+    #===========================================================================
+    # Ocean
+    #===========================================================================
+    sea_ice_area_fraction:
+        variable_name: ['ice']
+        long_name:     'sea ice concentration'
+        description:   >
+            X_area_fraction means the fraction of horizontal area occupied by X.
+            X_area means the horizontal area occupied by X within the grid cell.
+            Sea ice area fraction is area of the sea surface occupied by sea ice.
+            It is also called sea ice concentration.
+            
+    eastward_sea_water_velocity:
+        variable_name:   ['u']
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Eastward' indicates a vector component
+            which is positive when directed eastward (negative westward).
+
+    northward_sea_water_velocity:
+        variable_name:   ['v']
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Northward' indicates a vector component
+            which is positive when directed northward (negative southward).
+
+    upward_sea_water_velocity:
+        variable_name:   ['w']
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Upward' indicates a vector component
+            which is positive when directed upward (negative downward).
+
+    eastward_sea_water_velocity_assuming_no_tide:
+        variable_name:   ['uo', 'water_u']
+        long_name:       eastward water velocity assuming no tide
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Eastward' indicates a vector component
+            which is positive when directed eastward (negative westward). 
+
+    northward_sea_water_velocity_assuming_no_tide:
+        variable_name:   ['vo', 'water_v']
+        long_name:       northward water velocity assuming no tide
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Northward' indicates a vector component
+            which is positive when directed northward (negative southward). 
+
+    surface_eastward_sea_water_velocity:
+        variable_name:   ['us']
+        canonical_units: 'm s-1'
+        description:     >
+            The surface called 'surface' means the lower boundary of the atmosphere.
+            'Water' means water in all phases, including frozen i.e. ice and snow.
+            A velocity is a vector quantity. 'Eastward' indicates a vector component
+            which is positive when directed eastward (negative westward).
+
+    surface_northward_sea_water_velocity:
+        variable_name:   ['vs']
+        canonical_units: 'm s-1'
+        description:     >
+            The surface called 'surface' means the lower boundary of the atmosphere.
+            'Water' means water in all phases, including frozen i.e. ice and snow.
+            A velocity is a vector quantity. 'Northward' indicates a vector component
+            which is positive when directed northward (negative southward).
+
+    surface_eastward_sea_water_velocity_assuming_no_tide: # not in CF
+        variable_name:   ['uso']
+        canonical_units: 'm s-1'
+        description:     >
+            The surface called 'surface' means the lower boundary of the atmosphere.
+            'Water' means water in all phases, including frozen i.e. ice and snow.
+            A velocity is a vector quantity. 'Eastward' indicates a vector component
+            which is positive when directed eastward (negative westward).
+
+    surface_northward_sea_water_velocity_assuming_no_tide: # not in CF
+        variable_name:   ['vso']
+        canonical_units: 'm s-1'
+        description:     >
+            The surface called 'surface' means the lower boundary of the atmosphere.
+            'Water' means water in all phases, including frozen i.e. ice and snow.
+            A velocity is a vector quantity. 'Northward' indicates a vector component
+            which is positive when directed northward (negative southward).
+
+    barotropic_eastward_sea_water_velocity:
+        variable_name:   ['um']
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Eastward' indicates a vector component
+            which is positive when directed eastward (negative westward).
+
+    barotropic_northward_sea_water_velocity:
+        variable_name:   ['vm']
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Northward' indicates a vector component
+            which is positive when directed northward (negative southward).
+
+    barotropic_eastward_sea_water_velocity_assuming_no_tide: # not in CF
+        variable_name:   ['umo']
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Eastward' indicates a vector component
+            which is positive when directed eastward (negative westward).
+
+    barotropic_northward_sea_water_velocity_assuming_no_tide: # not in CF
+        variable_name:   ['vmo']
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Northward' indicates a vector component
+            which is positive when directed northward (negative southward).
+
+    barotropic_eastward_sea_water_velocity_due_to_tides: # not in CF
+        variable_name:   ['ut']
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Eastward' indicates a vector component
+            which is positive when directed eastward (negative westward).
+
+    barotropic_northward_sea_water_velocity_due_to_tides: # not in CF
+        variable_name:   ['vt']
+        canonical_units: 'm s-1'
+        description:     >
+            A velocity is a vector quantity. 'Northward' indicates a vector component
+            which is positive when directed northward (negative southward).
+
+    sea_surface_height_above_geoid:
+        variable_name:   ['el','ssh']
+        canonical_units: 'm'
+        description:     >
+            The geoid is a surface of constant geopotential with which mean sea 
+            level would coincide if the ocean were at rest. (The volume enclosed 
+            between the geoid and the sea floor equals the mean volume of 
+            water in the ocean.) In an ocean GCM the geoid is the surface of 
+            zero depth, or the rigid lid if the model uses that approximation. 
+            'Sea surface height'; is a time-varying quantity. By definition of 
+            the geoid, the global average of the time-mean sea surface height 
+            (i.e. mean sea level) above the geoid must be zero. The standard 
+            name for the height of the sea surface above mean sea level is 
+            sea_surface_height_above_sea_level. The standard name for the height 
+            of the sea surface above the reference ellipsoid is 
+            sea_surface_height_above_reference_ellipsoid.
+
+    sea_surface_height_above_geoid_assuming_no_tide:
+        variable_name:   []
+        canonical_units: 'm'
+        description:     >
+            The geoid is a surface of constant geopotential with which mean sea 
+            level would coincide if the ocean were at rest. (The volume enclosed 
+            between the geoid and the sea floor equals the mean volume of 
+            water in the ocean.) In an ocean GCM the geoid is the surface of 
+            zero depth, or the rigid lid if the model uses that approximation. 
+            'Sea surface height'; is a time-varying quantity. By definition of 
+            the geoid, the global average of the time-mean sea surface height 
+            (i.e. mean sea level) above the geoid must be zero. The standard 
+            name for the height of the sea surface above mean sea level is 
+            sea_surface_height_above_sea_level. The standard name for the height 
+            of the sea surface above the reference ellipsoid is 
+            sea_surface_height_above_reference_ellipsoid.
+
+    sea_surface_height_above_geoid_due_to_earth_tide:
+        variable_name:   ['et']
+        canonical_units: 'm'
+        description:     >
+            The geoid is a surface of constant geopotential with which mean sea 
+            level would coincide if the ocean were at rest. (The volume enclosed 
+            between the geoid and the sea floor equals the mean volume of 
+            water in the ocean.) In an ocean GCM the geoid is the surface of 
+            zero depth, or the rigid lid if the model uses that approximation. 
+            'Sea surface height'; is a time-varying quantity. By definition of 
+            the geoid, the global average of the time-mean sea surface height 
+            (i.e. mean sea level) above the geoid must be zero. The standard 
+            name for the height of the sea surface above mean sea level is 
+            sea_surface_height_above_sea_level. The standard name for the height 
+            of the sea surface above the reference ellipsoid is 
+            sea_surface_height_above_reference_ellipsoid.
+
+    sea_surface_elevation:
+        variable_name:   ['surf_el']
+        long_name:       'sea surface elevation'
+        canonical_units: 'm'
+        description:     '  '
+
+    sea_surface_temperature:
+        variable_name:   ['sst']
+        canonical_units: 'K'
+        description:     >
+            Sea surface temperature is usually abbreviated as 'SST'. It is the
+            temperature of sea water near the surface (including the part under
+            sea-ice, if any), and not the skin temperature, whose standard name is
+            surface_temperature. For the temperature of sea water at a particular
+            depth or layer, a data variable of sea_water_temperature with a vertical
+            coordinate axis should be used.
+
+    sea_water_temperature:
+        variable_name:   ['temp', 'water_temp']
+        long_name:       sea water temperature
+        canonical_units: 'K'
+        description:     >
+            Sea water temperature is the in situ temperature of the sea water. To
+            specify the depth at which the temperature applies use a vertical
+            coordinate variable or scalar coordinate variable. There are standard
+            names for sea_surface_temperature, sea_surface_skin_temperature,
+            sea_surface_subskin_temperature and sea_surface_foundation_temperature
+            which can be used to describe data located at the specified surfaces.
+            For observed data, depending on the period during which the observation
+            was made, the measured in situ temperature was recorded against standard
+            'scales'. These historical scales include the International Practical
+            Temperature Scale of 1948 (IPTS-48; 1948-1967), the International
+            Practical Temperature Scale of 1968 (IPTS-68, Barber, 1969; 1968-1989)
+            and the International Temperature Scale of 1990 (ITS-90, Saunders 1990;
+            1990 onwards). Conversion of data between these scales follows
+            t68 = t48 - (4.4 x 10e-6) * t48(100 - t - 48); t90 = 0.99976 * t68.
+            Observations made prior to 1948 (IPTS-48) have not been documented and
+            therefore a conversion cannot be certain. Differences between t90 and
+            t68 can be up to 0.01 at temperatures of 40 C and above; differences of
+            0.002-0.007 occur across the standard range of ocean temperatures
+            (-10 - 30 C). The International Equation of State of Seawater 1980
+            (EOS-80, UNESCO, 1981) and the Practical Salinity Scale (PSS-78) were
+            both based on IPTS-68, while the Thermodynamic Equation of Seawater 2010
+            (TEOS-10) is based on ITS-90. References: Barber, 1969,
+            doi: 10.1088/0026-1394/5/2/001; UNESCO, 1981; Saunders, 1990, WOCE
+            Newsletter, 10, September 1990.
+
+    integral_of_sea_water_potential_temperature_wrt_depth_expressed_as_heat_content:
+        variable_name:    ['Ocean_Heat_Content'] # as in CFSR
+        canonical_units:  'J m-2'
+        description:      >
+            'Content' indicates a quantity per unit area.  Depth is the vertical 
+            distance below the surface.  The quantity with standard name 
+            integral_of_sea_ice_temperature_wrt_depth_expressed_as_heat_content 
+            is calculated relative to the heat content of ice at zero degrees 
+            Celsius, which is assumed to have a heat content of zero Joules. 
+            'integral_of_Y_wrt_X' means int Y dX. The data variable should have 
+            an axis for X specifying the limits of the integral as bounds.  'wrt'
+            means with respect to.
+
+    sea_water_mass:
+        variable_name:   []
+        canonical_units: 'kg'
+        description:     >
+            The quantity with standard name 'sea_water_mass' is the total mass of
+            liquid seawater in the global oceans, including enclosed seas.
+
+    sea_water_mass_per_unit_area:
+        variable_name:   []
+        canonical_units: 'kg m-2'
+        description:     >
+            Sea_water_mass_per_unit_area is the mass per unit area of the sea water
+            contained within each grid cell.
+
+    sea_water_density:
+        variable_name:   []
+        canonical_units: 'kg m-3'
+        description:     >
+            Sea water density is the in-situ density (not the potential density).
+            If 1000 kg m-3 is subtracted, the standard name sea_water_sigma_t should
+            be chosen instead.
+
+    sea_water_absolute_salinity:
+        variable_name:   ['salt']
+        canonical_units: 'g kg-1'
+        description:     >
+            Absolute Salinity, S_A, is defined as part of the Thermodynamic Equation
+            of Seawater 2010 (TEOS-10) which was adopted in 2010 by the
+            Intergovernmental Oceanographic Commission (IOC). It is the mass fraction
+            of dissolved material in sea water. Absolute Salinity incorporates the
+            spatial variations in the composition of sea water. This type of Absolute
+            Salinity is also called 'Density Salinity'. TEOS-10 estimates Absolute
+            Salinity as the salinity variable that, when used with the TEOS-10
+            expression for density, yields the correct density of a sea water sample
+            even when the sample is not of Reference Composition. In practice,
+            Absolute Salinity is often calculated from Practical Salinity using a
+            spatial lookup table of pre-defined values of the Absolute Salinity Anomaly.
+            It is recommended that the version of (TEOS-10) software and the associated
+            Absolute Salinity Anomaly climatology be specified within metadata by
+            attaching a comment attribute to the data variable. Reference:
+            www.teos-10.org; Millero et al., 2008 doi: 10.1016/j.dsr.2007.10.001.
+            There are also standard names for the precisely defined salinity quantities
+            sea_water_knudsen_salinity, S_K (used for salinity observations between
+            1901 and 1966), sea_water_cox_salinity, S_C (used for salinity observations
+            between 1967 and 1977), sea_water_practical_salinity, S_P (used for salinity
+            observations from 1978 onwards), sea_water_preformed_salinity, S_*, and
+            sea_water_reference_salinity. Salinity quantities that do not match any
+            of the precise definitions should be given the more general standard name
+            of sea_water_salinity.
+
+    sea_water_salinity:
+        variable_name:   ['salinity']
+        long_name:       sea water salinity
+        canonical_units: '1e-3'
+        description:     >
+            If a sea water sample has the Reference Composition (defined in
+            Millero et al., 2008), then its Reference Salinity is the best available
+            estimate of its Absolute Salinity. For general purposes, Reference Salinity is
+            (35.16504 g kg-1)/35 times Practical Salinity. Reference: www.teos-10.org;
+            Millero et al., 2008 doi: 10.1016/j.dsr.2007.10.001. There are also standard
+            names for the precisely defined salinity quantities sea_water_knudsen_salinity,
+            S_K (used for salinity observations between 1901 and 1966),
+            sea_water_cox_salinity, S_C (used for salinity observations between 1967 and
+            1977), sea_water_practical_salinity (used for salinity observations from 1978
+            onwards), sea_water_absolute_salinity, S_A, and sea_water_preformed_salinity,
+            S_*. Salinity quantities that do not match any of the precise definitions
+            should be given the more general standard name of sea_water_salinity.
+
+    sea_surface_salinity:
+        variable_name:   ['sss']
+        canonical_units: '1e-3'
+        description:     >
+            Sea surface salinity is the salt content of sea water close to the sea
+            surface, often on the Practical Salinity Scale of 1978. However, the
+            unqualified term 'salinity' is generic and does not necessarily imply
+            any particular method of calculation. The units of salinity are
+            dimensionless and the units attribute should normally be given as 1e-3
+            or 0.001 i.e. parts per thousand. Sea surface salinity is often
+            abbreviated as 'SSS'. For the salinity of sea water at a particular depth
+            or layer, a data variable of 'sea_water_salinity' or one of the more
+            precisely defined salinities should be used with a vertical coordinate
+            axis. There are standard names for the precisely defined salinity
+            quantities: sea_water_knudsen_salinity, S_K (used for salinity
+            observations between 1901 and 1966), sea_water_cox_salinity, S_C (used for
+            salinity observations between 1967 and 1977), sea_water_practical_salinity,
+            S_P (used for salinity observations from 1978 to the present day),
+            sea_water_absolute_salinity, S_A, sea_water_preformed_salinity, S_*, and
+            sea_water_reference_salinity. Practical Salinity is reported on the
+            Practical Salinity Scale of 1978 (PSS-78), and is usually based on the
+            electrical conductivity of sea water in observations since the 1960s.
+            Conversion of data between the observed scales follows:
+            S_P = (S_K - 0.03) * (1.80655 / 1.805) and S_P = S_C, however the
+            accuracy of the latter is dependent on whether chlorinity or conductivity
+            was used to determine the S_C value, with this inconsistency driving the
+            development of PSS-78. The more precise standard names should be used
+            where appropriate for both modelled and observed salinities. In particular,
+            the use of sea_water_salinity to describe salinity observations made
+            from 1978 onwards is now deprecated in favor of the term
+            sea_water_practical_salinity which is the salinity quantity stored by
+            national data centers for post-1978 observations. The only exception to
+            this is where the observed salinities are definitely known not to be
+            recorded on the Practical Salinity Scale. The unit 'parts per thousand'
+            was used for sea_water_knudsen_salinity and sea_water_cox_salinity.
+
+    #===========================================================================
+    # Meteo
+    #===========================================================================
+    northward_wind:
+        variable_name:   ['vgrd', 'vas_10m']
+        long_name:       'wind v component'
+        canonical_units: 'm s-1'
+        description:     >
+            'Northward' indicates a vector component which is positive when directed
+            northward (negative southward). Wind is defined as a two-dimensional
+            (horizontal) air velocity vector, with no vertical component. (Vertical
+            motion in the atmosphere has the standard name upward_air_velocity.)
+
+    eastward_wind:
+        variable_name:   ['ugrd', 'uas_10m']
+        long_name:       'wind u component'
+        canonical_units: 'm s-1'
+        description:     >
+            'Eastward' indicates a vector component which is positive when directed
+            eastward (negative westward). Wind is defined as a two-dimensional
+            (horizontal) air velocity vector, with no vertical component. (Vertical
+            motion in the atmosphere has the standard name upward_air_velocity.)
+
+    northward_wind_10m:
+        variable_name:   ['vgrd10m']
+        long_name:       '10m wind v component'
+        canonical_units: 'm s-1'
+        description:     >
+            'Northward' indicates a vector component which is positive when directed
+            northward (negative southward). Wind is defined as a two-dimensional
+            (horizontal) air velocity vector, with no vertical component. (Vertical
+            motion in the atmosphere has the standard name upward_air_velocity.)
+            10m indicates wind at 10m above surface
+
+    eastward_wind_10m:
+        variable_name:   ['ugrd10m']
+        long_name:       '10m wind u component'
+        canonical_units: 'm s-1'
+        description:     >
+            'Eastward' indicates a vector component which is positive when directed
+            eastward (negative westward). Wind is defined as a two-dimensional
+            (horizontal) air velocity vector, with no vertical component. (Vertical
+            motion in the atmosphere has the standard name upward_air_velocity.)
+            10m indicates wind at 10m above surface
+
+    x_wind:
+        variable_name:   []
+        canonical_units: 'm s-1'
+        description:     >
+            'x' indicates a vector component along the grid x-axis, positive with
+            increasing x. Wind is defined as a two-dimensional (horizontal) air
+            velocity vector, with no vertical component. (Vertical motion in the
+            atmosphere has the standard name upward_air_velocity.)
+
+    y_wind:
+        variable_name:   []
+        canonical_units: 'm s-1'
+        description:     >
+            'y' indicates a vector component along the grid y-axis, positive with
+            increasing y. Wind is defined as a two-dimensional (horizontal) air
+            velocity vector, with no vertical component. (Vertical motion in the
+            atmosphere has the standard name upward_air_velocity.)
+
+    wind_from_direction:
+        variable_name:   []
+        canonical_units: 'degree'
+        description:     >
+            Wind is defined as a two-dimensional (horizontal) air velocity vector,
+            with no vertical component. (Vertical motion in the atmosphere has the
+            standard name upward_air_velocity.) In meteorological reports, the
+            direction of the wind vector is usually (but not always) given as the
+            direction from which it is blowing (wind_from_direction) (westerly,
+            northerly, etc.). In other contexts, such as atmospheric modelling, it
+            is often natural to give the direction in the usual manner of vectors as
+            the heading or the direction to which it is blowing (wind_to_direction)
+            (eastward, southward, etc.) 'from_direction' is used in the construction
+            X_from_direction and indicates the direction from which the velocity
+            vector of X is coming.
+
+    wind_to_direction:
+        variable_name:   []
+        canonical_units: 'degree'
+        description:     >
+            Wind is defined as a two-dimensional (horizontal) air velocity vector,
+            with no vertical component. (Vertical motion in the atmosphere has the
+            standard name upward_air_velocity.) In meteorological reports, the
+            direction of the wind vector is usually (but not always) given as the
+            direction from which it is blowing (wind_from_direction) (westerly,
+            northerly, etc.). In other contexts, such as atmospheric modelling, it
+            is often natural to give the direction in the usual manner of vectors as
+            the heading or the direction to which it is blowing (wind_to_direction)
+            (eastward, southward, etc.) 'to_direction' is used in the construction
+            X_to_direction and indicates the direction towards which the velocity
+            vector of X is headed. The direction is a bearing in the usual
+            geographical sense, measured positive clockwise from due north.
+
+    wind_speed:
+        variable_name:   []
+        canonical_units: 'm s-1'
+        description:     >
+            Speed is the magnitude of velocity. Wind is defined as a two-dimensional
+            (horizontal) air velocity vector, with no vertical component. (Vertical
+            motion in the atmosphere has the standard name upward_air_velocity.)
+            The wind speed is the magnitude of the wind velocity.
+
+    wind_speed_of_gust:
+        variable_name:   []
+        canonical_units: 'm s-1'
+        description:     >
+            Speed is the magnitude of velocity. Wind is defined as a two-dimensional
+            (horizontal) air velocity vector, with no vertical component. (Vertical
+            motion in the atmosphere has the standard name upward_air_velocity.) The
+            wind speed is the magnitude of the wind velocity. A gust is a sudden
+            brief period of high wind speed. In an observed timeseries of wind
+            speed, the gust wind speed can be indicated by a cell_methods of maximum
+            forthe time-interval. In an atmospheric model which has a parametrised
+            calculation of gustiness, the gust wind speed may be separately
+            diagnosed from the wind speed.
+
+    surface_air_pressure:
+        variable_name:   []
+        canonical_units: 'Pa'
+        description:     >
+            The surface called 'surface' means the lower boundary of the atmosphere.
+
+    air_pressure_at_sea_level:
+        variable_name:   ['mslp', 'psl']
+        description:     >
+            sea_level means mean sea level, which is close to the geoid in sea areas.
+            Air pressure at sea level is the quantity often abbreviated as MSLP or PMSL.
+
+    surface_temperature:
+        variable_name:   ['tmpsfc']
+        canonical_units: 'K'
+        description:     >
+            The surface called 'surface' means the lower boundary of the atmosphere.
+            The surface temperature is the temperature at the interface, not the
+            bulk temperature of the medium above or below. Unless indicated in the
+            cell_methods attribute, a quantity is assumed to apply to the whole area
+            of each horizontal grid box. Previously, the qualifier where_type was
+            used to specify that the quantity applies only to the part of the grid
+            box of the named type. Names containing the where_type qualifier are
+            deprecated and newly created data should use the cell_methods attribute
+            to indicate the horizontal area to which the quantity applies.
+
+    air_temperature:
+        variable_name:   ['tas_10m']
+        long_name:       'air temperature'
+        canonical_units: 'K'
+        description:     >
+            Air temperature is the bulk temperature of the air, not the surface (skin) temperature.
+
+    air_temperature_2m:
+        variable_name:   ['tmp2m']
+        canonical_units: 'K'
+        description:     >
+            Air temperature is the bulk temperature of the air, not the surface (skin) temperature.
+            2m represents at 2D variable constructed by taking the 2m level from the 3D
+            air_temperature field
+
+    surface_temperature_anomaly:
+        variable_name:   []
+        canonical_units: 'K'
+        description:     >
+            The surface called 'surface' means the lower boundary of the atmosphere.
+            'anomaly' means difference from climatology. The surface temperature is
+            the (skin) temperature at the interface, not the bulk temperature of the
+            medium above or below.
+    
+    surface_net_downward_shortwave_flux:
+        variable_name:   ['dswrfsfc']
+        description:
+            The surface called surface means the lower boundary of the atmosphere. shortwave
+            means shortwave radiation. Downward indicates a vector component which is positive
+            when directed downward (negative upward). Net downward radiation is the difference
+            between radiation from above (downwelling) and radiation from below (upwelling).
+            In accordance with common usage in geophysical disciplines, flux implies
+            per unit area, called flux density in physics.
+    
+    surface_net_downward_longwave_flux:
+        variable_name:   ['dlwrfsfc']
+        description:
+            The surface called surface means the lower boundary of the atmosphere. longwave
+            means longwave radiation. Downward indicates a vector component which is positive
+            when directed downward (negative upward). Net downward radiation is the difference
+            between radiation from above (downwelling) and radiation from below (upwelling).
+            In accordance with common usage in geophysical disciplines, flux implies
+            per unit area, called flux density in physics.
+        
+    downwelling_longwave_flux_in_air:
+        variable_name:   ['rlds']
+        description:     >
+            longwave means longwave radiation. Downwelling radiation is radiation from above.
+            It does not mean net downward. When thought of as being incident on a surface, a
+            radiative flux is sometimes called irradiance. In addition, it is identical with
+            the quantity measured by a cosine-collector light-meter and sometimes called
+            vector irradiance. In accordance with common usage in geophysical disciplines,
+            flux implies per unit area, called flux density in physics.            
+
+    downwelling_shortwave_flux_in_air:
+        variable_name:   []
+        description:     >
+            shortwave means longwave radiation. Downwelling radiation is radiation from above.
+            It does not mean net downward. When thought of as being incident on a surface, a
+            radiative flux is sometimes called irradiance. In addition, it is identical with
+            the quantity measured by a cosine-collector light-meter and sometimes called
+            vector irradiance. In accordance with common usage in geophysical disciplines,
+            flux implies per unit area, called flux density in physics.
+
+    specific_humidity:
+        variable_name:   ['huss_10m', 'spfh2m']
+        long_name:       'Near-Surface Specific Humidity'
+        description:     >
+            specific means per unit mass. Specific humidity is the mass fraction of water vapor in (moist) air.
+
+    relative_humidity_2m:
+        variable_name:   ['rh2m']
+        description:     '  '
+
+    surface_lwe_precipitation_rate:
+        variable_name:   ['apratesfc']
+        description:     >
+            lwe means liquid water equivalent. Precipitation rate means the depth or thickness
+            of the layer formed by precipitation per unit time.
+
+    lwe_precipitation_rate:
+        variable_name:   ['prrn']
+        description:     >
+            lwe means liquid water equivalent. Precipitation rate means the depth or thickness
+            of the layer formed by precipitation per unit time.
+
+    lwe_snowfall_rate:
+        variable_name:   ['prsn']
+        long_name:       'Precipitation of water in solid phase'
+        description:     >
+            lwe means liquid water equivalent.
+
+    precipitation_rate:
+        variable_name:   ['pr']
+        long_name:       'Precipitation both liquid and solid phases'
+        description:     >
+            Precipitation rate means the depth or thickness
+            of the layer formed by precipitation per unit time.
+
+    planetary_albedo:
+        variable_name:   []
+        canonical_units: '1'
+        description:     '1'
+
+    sea_ice_albedo:
+        variable_name:   []
+        canonical_units: '1'
+        description:     The albedo of sea ice.
+
+    soil_albedo:
+        variable_name:   []
+        canonical_units: '1'
+        description:     >
+            Soil albedo is the albedo of the soil surface assuming no snow.
+
+    surface_albedo:
+        variable_name:   []
+        canonical_units: '1'
+        description:     >
+            The surface called 'surface' means the lower boundary of the atmosphere.
+
+    #===========================================================================
+    # Wave
+    #===========================================================================
+    # Spectra
+    sea_surface_wave_directional_variance_spectral_density:
+        variable_name:   ['efth', 'specden']
+        long_name:       'sea surface wave directional variance spectral density'
+        canonical_units: 'm2 s rad-1'
+        units:           'm2 s degree-1'
+        description:     >
+            Sea surface wave directional variance spectral density is the variance of
+            the amplitude of the waves within given ranges of direction and wave frequency.
+
+    sea_surface_wave_variance_spectral_density:
+        variable_name:   []
+        long_name:       'Sea surface frequency wave spectra'
+        canonical_units: 'm2 s'
+        long_name:       'm2 s'
+        description:     >
+            Sea surface wave variance spectral density is the variance of wave
+            amplitude within a range of wave frequency.
+
+    sea_surface_wave_frequency_spectral_width:
+        variable_name:   ['fspr']
+        long_name:       'Frequency spreading'
+        canonical_units: '1'
+        units:           ' '
+        description:     >
+            Sea surface wave frequency spectral width is the normalised width of the frequency
+            spectrum (frequency spreading).
+            
+    #------------------------------------------------------------- WW3 Watershed
+    sea_surface_wave_significant_height_partition_0: # NEW
+        variable_name:   ['hs0']
+        long_name:       'Significant wave height partition 0'
+        canonical_units: 'm'
+        units:           'm'
+        description:     >
+            Significant wave height for the activelly wind driven watershed partition
+
+    sea_surface_wave_significant_height_partition_1: # NEW
+        variable_name:   ['hs1', 'hs_sw1']
+        long_name:       'Significant wave height partition 1'
+        canonical_units: 'm'
+        units:           'm'
+        description:     >
+            Significan wave height for the first watershed swell partition.
+
+    sea_surface_wave_significant_height_partition_2: # NEW
+        variable_name:   ['hs2', 'hs_sw2']
+        long_name:       'Significant wave height partition 2'
+        canonical_units: 'm'
+        units:           'm'
+        description:     >
+            Significan wave height for the second watershed swell partition.
+
+    sea_surface_wave_significant_height_partition_3: # NEW
+        variable_name:   ['hs3', 'hs_sw3']
+        long_name:       'Significant wave height partition 3'
+        canonical_units: 'm'
+        units:           'm'
+        description:     >
+            Significan wave height for the third watershed swell partition.
+
+    sea_surface_wave_peak_period_partition_0: # NEW
+        variable_name:   ['tp0']
+        long_name:       'Peak period partition 0'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            Peak wave period for the activelly wind driven watershed partition
+
+    sea_surface_wave_peak_period_partition_1: # NEW
+        variable_name:   ['tp1', 'tp_sw1']
+        long_name:       'Peak wave period partition 1'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            Peak wave period for the first watershed swell partition.
+
+    sea_surface_wave_peak_period_partition_2: # NEW
+        variable_name:   ['tp2', 'tp_sw2']
+        long_name:       'Peak wave period partition 2'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            Peak wave period for the second watershed swell partition.
+
+    sea_surface_wave_peak_period_partition_3: # NEW
+        variable_name:   ['tp3', 'tp_sw3']
+        long_name:       'Peak wave period partition 2'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            Peak wave period for the third watershed swell partition.
+
+    sea_surface_wave_peak_direction_partition_0: # NEW
+        variable_name:   ['dpm0']
+        long_name:       'Peak period partition 0'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            Peak wave direction for the activelly wind driven watershed partition
+
+    sea_surface_wave_peak_direction_partition_1: # NEW
+        variable_name:   ['dpm1', 'dpm_sw1']
+        long_name:       'Peak wave period partition 1'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            Peak wave direction for the first watershed swell partition.
+
+    sea_surface_wave_peak_direction_partition_2: # NEW
+        variable_name:   ['dpm2', 'dpm_sw2']
+        long_name:       'Peak wave period partition 2'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            Peak wave direction for the second watershed swell partition.
+
+    sea_surface_wave_peak_direction_partition_3: # NEW
+        variable_name:   ['dpm3', 'dpm_sw3']
+        long_name:       'Peak wave period partition 3'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            Peak wave direction for the third watershed swell partition.
+    #---------------------------------------------------------------------------
+
+    # Height
+    sea_surface_wave_significant_height:
+        variable_name:   ['hs']
+        long_name:       'Significant wave height of wind and swell waves'
+        canonical_units: 'm'
+        units:           'm'
+        description:     Height is the vertical distance above the surface.
+
+    sea_surface_swell_wave_significant_height:
+        variable_name:   ['hs_sw', 'hs_sw8', 'hs_sw9']
+        long_name:       'Significant wave height of swell waves'
+        canonical_units: 'm'
+        units:           'm'
+        description:     >
+            Height is the vertical distance above the surface.
+            Swell waves are waves on the ocean surface.
+
+    sea_surface_wind_wave_significant_height:
+        variable_name:   []
+        long_name:       'Significant wave height of wind sea waves'
+        canonical_units: 'm'
+        units:           'm'
+        description:     >
+            Height is the vertical distance above the surface. Wind waves are waves
+            on the ocean surface. Wind is defined as a two-dimensional (horizontal)
+            air velocity vector, with no vertical component. (Vertical motion in the
+            atmosphere has the standard name upward_air_velocity.)
+
+    # Period
+    sea_surface_wave_period_at_variance_spectral_density_maximum:
+        variable_name:   ['tp']
+        long_name:       'Peak wave period'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            A period is an interval of time, or the time-period of an oscillation.
+            The sea_surface_wave_period_at_variance_spectral_density_maximum,
+            sometimes called peak wave period, is the period of the most energetic
+            waves in the total wave spectrum at a specific location.
+
+    sea_surface_swell_wave_period:
+        variable_name:   ['tp_sw', 'tp_sw8', 'tp_sw9']
+        long_name:       'Peak period of swell waves'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            A period is an interval of time, or the time-period of an
+            oscillation. Swell waves are waves on the ocean surface.
+
+    sea_surface_wind_wave_period:
+        variable_name:   []
+        long_name:       'Peak period of wind sea waves'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            A period is an interval of time, or the time-period of an oscillation.
+            Wind waves are waves on the ocean surface. Wind is defined as a
+            two-dimensional (horizontal) air velocity vector, with no vertical
+            component. (Vertical motion in the atmosphere has the standard name
+            upward_air_velocity.)
+
+    # Peak direction
+    sea_surface_wave_peak_direction: # NEW
+        variable_name:   ['dp', 'dpm']
+        long_name:       'Peak wave direction'
+        canonical_units: 'degree'
+        units:           'degree'
+        description:     >
+            Dominant wave direction
+
+    sea_surface_swell_wave_peak_direction: # NEW
+        variable_name:   ['dpm_sw', 'dpm_sw8', 'dpm_sw9']
+        long_name:       'Peak direction of swell waves'
+        canonical_units: 'degree'
+        units:           'degree'
+        description:     >
+            Dominant swell wave direction
+
+    sea_surface_wind_wave_peak_direction: # NEW
+        variable_name:   []
+        long_name:       'Peak direction of wind sea waves'
+        canonical_units: 'degree'
+        units:           'degree'
+        description:     >
+            Dominant wind sea wave direction
+
+    sea_surface_swell_wave_from_direction:
+        variable_name:   []
+        long_name:       'Direction of swell waves in coming from convention'
+        canonical_units: 'degree'
+        units:           'degree'
+        description:     >
+            Swell waves are waves on the ocean surface. 'from_direction' is used in
+            the construction X_to_direction and indicates the direction from which
+            the velocity vector of X is coming. The direction is a bearing in the
+            usual geographical sense, measured positive clockwise from due north.
+
+    sea_surface_wind_wave_from_direction:
+        variable_name:   []
+        long_name:       'Direction of wind sea waves in coming from convention'
+        canonical_units: 'degree'
+        units:           'degree'
+        description:     >
+            Wind waves are waves on the ocean surface. Wind is defined as a
+            two-dimensional (horizontal) air velocity vector, with no vertical
+            component. (Vertical motion in the atmosphere has the standard name
+            'upward_air_velocity'.) 'from_direction' is used in the construction
+            X_to_direction and indicates the direction from which the velocity
+            vector of X is coming. The direction is a bearing in the usual
+            geographical sense, measured positive clockwise from due north.
+
+    sea_surface_swell_wave_to_direction:
+        variable_name:   []
+        long_name:       'Direction of swell waves in going to convention'
+        canonical_units: 'degree'
+        units:           'degree'
+        description:     >
+            Swell waves are waves on the ocean surface. 'to_direction' is used in
+            the construction X_to_direction and indicates the direction towards which
+            the velocity vector of X is headed. The direction is a bearing in the
+            usual geographical sense, measured positive clockwise from due north.
+
+    sea_surface_wind_wave_to_direction:
+        variable_name:   []
+        long_name:       'Direction of wind sea waves in going to convention'
+        canonical_units: 'degree'
+        units:           'degree'
+        description:     >
+            Wind waves are waves on the ocean surface. Wind is defined as a
+            two-dimensional (horizontal) air velocity vector, with no vertical
+            component. (Vertical motion in the atmosphere has the standard name
+            'upward_air_velocity'.) 'to_direction' is used in the construction
+            X_to_direction and indicates the direction towards which the velocity
+            vector of X is headed. The direction is a bearing in the usual
+            geographical sense, measured positive clockwise from due north.
+
+    # Zero-crossing
+    sea_surface_wave_zero_upcrossing_period:
+        variable_name:   []
+        long_name:       'Zero up-crossing wave period'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            A period is an interval of time, or the time-period of an oscillation.
+            The zero upcrossing period is defined as the time interval between
+            consecutive occasions on which the surface height passes upward above
+            the mean level.
+
+    sea_surface_swell_wave_zero_upcrossing_period:
+        variable_name:   []
+        long_name:       'Zero up-crossing period of swell waves'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            A period is an interval of time, or the time-period of an oscillation.
+            The zero upcrossing period is defined as the time interval between
+            consecutive occasions on which the surface height passes upward above
+            the mean level. Swell waves are waves on the ocean surface.
+
+    sea_surface_wind_wave_zero_upcrossing_period:
+        variable_name:   []
+        long_name:       'Zero up-crossing period of wind sea waves'
+        canonical_units: 's'
+        description:     >
+            A period is an interval of time, or the time-period of an oscillation.
+            The zero upcrossing period is defined as the time interval between
+            consecutive occasions on which the surface height passes upward above the
+            mean level. Wind waves are waves on the ocean surface. Wind is defined
+            as a two-dimensional (horizontal) air velocity vector, with no vertical
+            component. (Vertical motion in the atmosphere has the standard name
+            upward_air_velocity.)
+
+    #TM0{N}
+    sea_surface_wave_mean_period_from_variance_spectral_density_first_frequency_moment:
+        variable_name:   ['tm01']
+        long_name:       'Mean wave period from first spectral moment'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            The wave directional spectrum can be written as a five dimensional function
+            S(t,x,y,f,theta) where t is time, x and y are horizontal coordinates
+            (such as longitude and latitude), f is frequency and theta is direction.
+            S has the standard name sea_surface_wave_directional_variance_spectral_density.
+            S can be integrated over direction to give S1 = integral(S dtheta) and this
+            quantity has the standard name sea_surface_wave_variance_spectral_density.
+            Frequency moments, M(n) of S1 can then be calculated as follows:
+            M(n) = integral(S1 f^n df), where f^n is f to the power of n. The first
+            wave period, T(m1) is calculated as the ratio M(0)/M(1).
+
+    sea_surface_wave_mean_period_from_variance_spectral_density_second_frequency_moment:
+        variable_name:   ['tm02']
+        long_name:       'Mean wave period from second spectral moment'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            The wave directional spectrum can be written as a five dimensional function
+            S(t,x,y,f,theta) where t is time, x and y are horizontal coordinates
+            (such as longitude and latitude), f is frequency and theta is direction.
+            S has the standard name sea_surface_wave_directional_variance_spectral_density.
+            S can be integrated over direction to give S1= integral(S dtheta) and this
+            quantity has the standard name sea_surface_wave_variance_spectral_density.
+            Frequency moments, M(n) of S1 can then be calculated as follows:
+            M(n) = integral(S1 f^n df), where f^n is f to the power of n. The second
+            wave period, T(m2) is calculated as the square root of the ratio M(0)/M(2).
+
+    sea_surface_wave_mean_period_from_variance_spectral_density_inverse_frequency_moment:
+        variable_name:   []
+        long_name:       'Mean wave period from inverse spectral moment'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            The wave directional spectrum can be written as a five dimensional function
+            S(t,x,y,f,theta) where t is time, x and y are horizontal coordinates
+            (such as longitude and latitude), f is frequency and theta is direction.
+            S has the standard name sea_surface_wave_directional_variance_spectral_density.
+            S can be integrated over direction to give S1= integral(S dtheta) and
+            this quantity has the standard name sea_surface_wave_variance_spectral_density.
+            Frequency moments, M(n) of S1 can then be calculated as follows:
+            M(n) = integral(S1 f^n df), where f^n is f to the power of n.
+            The inverse wave period, T(m-1), is calculated as the ratio M(-1)/M(0).
+
+    sea_surface_swell_wave_mean_period_from_variance_spectral_density_first_frequency_moment:
+        variable_name:   []
+        long_name:       'Mean period of swell waves from first spectral moment'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            The swell wave directional spectrum can be written as a five dimensional
+            function S(t,x,y,f,theta) where t is time, x and y are horizontal coordinates
+            (such as longitude and latitude), f is frequency and theta is direction.
+            S can be integrated over direction to give S1 = integral(S dtheta).
+            Frequency moments, M(n) of S1 can then be calculated as follows:
+            M(n) = integral(S1 f^n df), where f^n is f to the power of n.
+            The first wave period, T(m1), is calculated as the ratio M(0)/M(1).
+
+    sea_surface_swell_wave_mean_period_from_variance_spectral_density_second_frequency_moment:
+        variable_name:   []
+        long_name:       'Mean period of swell waves from second spectral moment'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            The swell wave directional spectrum can be written as a five dimensional
+            function S(t,x,y,f,theta) where t is time, x and y are horizontal coordinates
+            (such as longitude and latitude), f is frequency and theta is direction.
+            S can be integrated over direction to give S1= integral(S dtheta).
+            Frequency moments, M(n) of S1 can then be calculated as follows:
+            M(n) = integral(S1 f^n df), where f^n is f to the power of n. The second
+            wave period, T(m2), is calculated as the square root of the ratio M(0)/M(2).
+
+    sea_surface_swell_wave_mean_period_from_variance_spectral_density_inverse_frequency_moment:
+        variable_name:   []
+        long_name:       'Mean period of swell waves from inverse spectral moment'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            The swell wave directional spectrum can be written as a five dimensional
+            function S(t,x,y,f,theta) where t is time, x and y are horizontal coordinates
+            (such as longitude and latitude), f is frequency and theta is direction.
+            S can be integrated over direction to give  S1= integral(S dtheta).
+            Frequency moments, M(n) of S1 can then be calculated as follows:
+            M(n) = integral(S1 f^n df), where f^n is f to the power of n.
+            The inverse wave period, T(m-1), is calculated as the ratio M(-1)/M(0).
+
+    sea_surface_wind_wave_mean_period_from_variance_spectral_density_first_frequency_moment:
+        variable_name:   []
+        long_name:       'Mean period of wind sea waves from first spectral moment'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            The wind wave directional spectrum can be written as a five dimensional
+            function S(t,x,y,f,theta) where t is time, x and y are horizontal coordinates
+            (such as longitude and latitude), f is frequency and theta is direction.
+            S can be integrated over direction to give S1= integral(S dtheta).
+            Frequency moments, M(n) of S1 can then be calculated as follows:
+            M(n) = integral(S1 f^n df), where f^n is f to the power of n. The first
+            wave period, T(m1) is calculated as the ratio M(0)/M(1).
+
+    sea_surface_wind_wave_mean_period_from_variance_spectral_density_second_frequency_moment:
+        variable_name:   []
+        long_name:       'Mean period of wind sea waves from second spectral moment'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            The wind wave directional spectrum can be written as a five dimensional
+            function S(t,x,y,f,theta) where t is time, x and y are horizontal coordinates
+            (such as longitude and latitude), f is frequency and theta is direction.
+            S can be integrated over direction, thus S1= integral(S dtheta).
+            Frequency moments, M(n) of S1 can then be calculated as follows:
+            M(n) = integral(S1 f^n df), where f^n is f to the power of n. The second
+            wave period, T(m2), is calculated as the square root of the ratio M(0)/M(2).
+
+    sea_surface_wind_wave_mean_period_from_variance_spectral_density_inverse_frequency_moment:
+        variable_name:   []
+        long_name:       'Mean period of wind sea waves from inverse spectral moment'
+        canonical_units: 's'
+        units:           's'
+        description:     >
+            The wind wave directional spectrum can be written as a five dimensional
+            function S(t,x,y,f,theta) where t is time, x and y are horizontal coordinates
+            (such as longitude and latitude), f is frequency and theta is direction.
+            S can be integrated over direction to give S1= integral(S dtheta).
+            Frequency moments, M(n) of S1 can then be calculated as follows:
+            M(n) = integral(S1 f^n df), where f^n is f to the power of n. The
+            inverse wave period, T(m-1), is calculated as the ratio M(-1)/M(0).
